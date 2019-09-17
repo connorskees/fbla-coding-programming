@@ -1,7 +1,27 @@
 {
   "name": "fbla-coding-programming",
   "version": "0.1.0",
-  "author": "Connor Skees",
+  "author": {
+    "name": "Connor Skees",
+    "email": "connor1skees@gmail.com",
+    "url": "https://connorskees.github.io"
+  },
+  "description": "Connor Skees - Submission for 2019 FBLA Coding and Programming competitive event",
+  "build": {
+    "appId": "com.electron.fbla-coding-programming",
+    "productName": "fbla-coding-programming",
+    "copyright": "Copyright © 2019 Connor Skees",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -11,13 +31,18 @@
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
   },
+  "homepage": "./",
   "main": "public/electron.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "concurrently \"npm run start\" \"wait-on http://localhost:3000 && electron .\""
+    "electron-dev": "concurrently \"npm run start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "npm run build",
+    "electron-pack": "electron-builder build -w"
+
   },
   "eslintConfig": {
     "extends": "react-app"
