@@ -1,19 +1,43 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import "./styles.scss";
+
+const navElements = [
+    {
+        value: "Home",
+        path: "/"
+    },
+    {
+        value: "Students",
+        path: "/students"
+    },
+    {
+        value: "Generate Report",
+        path: "/generate-report"
+    },
+];
 
 class Header extends Component {
     state = {};
 
     render() {
+        let { active } = this.props;
         return (
-            <nav>
-                <h1>uda</h1>
-                <div className="nav-wrapper">
-                    <div className="nav-item">Home</div>
-                    <div className="nav-item">Students</div>
-                    <div className="nav-item">Generate Report</div>
-                </div>
-            </nav>
+            <header>
+                <nav className="header">
+                    <h1>uda</h1>
+                    <div className="nav-item-wrapper">
+                        {navElements.map(el => {
+                            let className = el.value === active ? "nav-item active" : "nav-item";
+                            return (
+                                <Link to={el.path.toLowerCase()} key={el.value} className={className}>
+                                    {el.value}
+                                </Link>
+                            )
+                        })}
+                    </div>
+                </nav>
+            </header>
         );
     }
 }
