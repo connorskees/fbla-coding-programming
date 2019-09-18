@@ -1,0 +1,53 @@
+@import "../variables";
+
+form {
+    width: 25rem;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1.5rem;
+}
+
+#student-id {
+    width: 5rem;
+}
+
+#award {
+    width: 18.75rem;
+}
+
+input {
+    width: 10rem;
+}
+
+input, select {
+    border: 1px solid $accent-color;
+    background: $lighter-accent-color;
+    border-radius: 8px;
+    padding: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: inherit;
+    outline: none;
+    margin-top: 3px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+}
+
+.update {
+    font-size: 1rem;
+    font-family: inherit;
+    color: inherit;
+    outline: none;
+    float: right;
+    background: #fff;
+    border: 1px solid $paragraph-color;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+}
