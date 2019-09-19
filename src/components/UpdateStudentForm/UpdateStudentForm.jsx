@@ -11,24 +11,24 @@ class UpdateStudentForm extends Component {
         return (
             <form className="update-student-form">
                 <div className="row row-1">
-                    <label for="first">
+                    <label htmlFor="first">
                         First
                         <input required pattern={ illegalCharacters } type="text" id="first" />
                     </label>
 
-                    <label for="last">
+                    <label htmlFor="last">
                         Last
                         <input required pattern={ illegalCharacters } type="text" id="last" />
                     </label>
                 </div>
 
                 <div className="row row-2">
-                    <label for="hours">
+                    <label htmlFor="hours">
                         Volunteer Hours
                         <input required pattern={ illegalCharacters } type="number" id="hours" />
                     </label>
 
-                    <label for="grade">
+                    <label htmlFor="grade">
                         Grade
                         <select required id="grade">
                             <option>9</option>
@@ -38,14 +38,14 @@ class UpdateStudentForm extends Component {
                         </select>
                     </label>
 
-                    <label for="student-id">
+                    <label htmlFor="student-id">
                         Student ID
                         <input required pattern={ illegalCharacters } type="text" id="student-id" />
                     </label>
                 </div>
 
                 <div className="row row-3">
-                    <label for="award">
+                    <label htmlFor="award">
                         Community Service Award
                         <select id="award">
                             <option>Community</option>
