@@ -9,7 +9,7 @@ class UpdateStudentForm extends Component {
 
     render() {
         return (
-            <form>
+            <form className="update-student-form">
                 <div className="row row-1">
                     <label for="first">
                         First
