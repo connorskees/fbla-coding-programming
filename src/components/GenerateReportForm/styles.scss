@@ -11,10 +11,38 @@ h3 {
     flex-direction: row;
     justify-content: space-around;
 
-    th {
-        color: $accent-color;
-        font-weight: bold;
-    }
+    .preview-container {
+
+        .submit-button {
+            background: $accent-color;
+            border: none;
+            font-weight: bold;
+            font-family: inherit;
+            color: $lighter-accent-color;
+            width: 10rem;
+            align-self: flex-end;
+            margin-top: 1rem;
+            padding: 1rem;
+            font-size: $base-font-size;
+            cursor: pointer;
+        }
+
+        .submit-button::after {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background-image: url('../../assets/file-download.svg');
+            float: right;
+            margin-left: 5px;
+            margin-top: -2px;
+            pointer-events: none;
+        }
+
+        th {
+            color: $accent-color;
+            font-weight: bold;
+        }
+    
 
     table, th, td {
         border: 1px solid $paragraph-color;
