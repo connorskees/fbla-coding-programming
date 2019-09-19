@@ -1,0 +1,60 @@
+@import "../variables";
+
+
+h3 {
+    color: $accent-color;
+    font-size: 1rem;
+}
+
+.generate-report-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    th {
+        color: $accent-color;
+        font-weight: bold;
+    }
+
+    table, th, td {
+        border: 1px solid $paragraph-color;
+        border-collapse: collapse;
+        text-align: center;
+        font-size: 1.25rem;
+        padding: 1rem 1.5rem 1rem 1.5rem;
+    }
+
+    .export-select-container, .preview-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .export-select-container {
+        label {
+            cursor: pointer;
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            font-size: 22px;
+            /* SASS auto-prefixes `user-select` for us :) */
+            user-select: none;
+        }
+
+        .export-type-radio {
+            cursor: pointer;
+            position: absolute;
+            opacity: 0;
+            height: 0;
+            width: 0;
+        }
+        
+        .radio-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+        }
+    }
+}
