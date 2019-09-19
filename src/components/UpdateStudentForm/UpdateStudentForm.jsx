@@ -4,7 +4,7 @@ import "./styles.scss";
 // Characters that can lead to XSS or SQLi 
 const illegalCharacters = "[^<>(){}'\"]+"
 
-class Form extends Component {
+class UpdateStudentForm extends Component {
     state = {};
 
     render() {
@@ -61,4 +61,4 @@ class Form extends Component {
     }
 }
 
-export default Form;
+export default UpdateStudentForm;
