@@ -43,7 +43,7 @@ h3 {
             color: $accent-color;
             font-weight: bold;
         }
-    
+
         table, th, td {
             border: 1px solid $paragraph-color;
             border-collapse: collapse;
@@ -71,7 +71,7 @@ h3 {
             padding-left: 35px;
             margin-bottom: 12px;
             font-size: 22px;
-            /* SASS auto-prefixes `user-select` for us :) */
+            /* SASS auto-prefixes `user-select` for us */
             user-select: none;
         }
 
@@ -82,7 +82,7 @@ h3 {
             height: 0;
             width: 0;
         }
-        
+
         .radio-img {
             position: absolute;
             top: 0;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import RadioChecked from 'assets/checked-radio.svg';
 import RadioUnchecked from 'assets/unchecked-radio.svg';
-import FileDownloadIcon from 'assets/file-download.svg';
 import "./styles.scss";
 
 const exportFormats = ["CSV", "TSV", "JSON", "XML", "YAML"];
@@ -50,7 +49,7 @@ class GenerateReportForm extends Component {
         exportFormat: ""
     };
 
-    updateExportFormat = (event) => {        
+    updateExportFormat = (event) => {
         this.setState({ exportFormat: event.target.id });
     }
 
@@ -71,7 +70,7 @@ class GenerateReportForm extends Component {
                         )
                     })}
                 </div>
-            
+
                 <div className="preview-container">
                     <h3>Preview</h3>
                     <table>

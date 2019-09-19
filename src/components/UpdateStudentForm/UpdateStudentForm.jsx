@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./styles.scss";
 
-// Characters that can lead to XSS or SQLi 
+// Characters that can lead to XSS or SQLi
 const illegalCharacters = "[^<>(){}'\"]+"
 
 class UpdateStudentForm extends Component {
@@ -54,7 +54,7 @@ class UpdateStudentForm extends Component {
                         </select>
                     </label>
                 </div>
-            
+
                 <button type="submit" className="update">Update</button>
             </form>
         );
