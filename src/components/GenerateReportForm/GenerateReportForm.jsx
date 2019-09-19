@@ -56,7 +56,7 @@ class GenerateReportForm extends Component {
     render() {
         const { exportFormat } = this.state;
         return (
-            <div className="generate-report-container">
+            <form className="generate-report-container">
                 <div className="export-select-container">
                     <h3>Export As</h3>
                     {exportFormats.map(format => {
@@ -97,8 +97,9 @@ class GenerateReportForm extends Component {
                             })}
                         </tbody>
                     </table>
+                    <input type="submit" />
                 </div>
-            </div>
+            </form>
         );
     }
 }
