@@ -42,6 +42,7 @@
     margin-left: 10px;
     cursor: pointer;
     background-repeat: no-repeat;
+    outline: none;
 
     &::after {
         @include transition(.3s);
