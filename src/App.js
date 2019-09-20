@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
-import UpdateStudentForm from './components/UpdateStudentForm';
+import Students from './pages/Students';
+import GenerateReport from './pages/GenerateReport';
 import {
   BrowserRouter as Router,
   Route,
@@ -12,8 +13,8 @@ function App() {
     <div className="App">
       <Router basename = "/">
         <Route path="/" exact component={Header} />
-        <Route path="/generate-report" component={Header} />
-        <Route path="/students" component={UpdateStudentForm} />
+        <Route path="/students" component={Students} />
+        <Route path="/generate-report" component={GenerateReport} />
     </Router>
     </div>
   );
