@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './components/Header';
+import Home from './pages/Home';
 import Students from './pages/Students';
 import GenerateReport from './pages/GenerateReport';
 import {
@@ -12,10 +12,10 @@ function App() {
   return (
     <div className="App">
       <Router basename = "/">
-        <Route path="/" exact component={Header} />
+        <Route path="/" exact component={Home} />
         <Route path="/students" component={Students} />
         <Route path="/generate-report" component={GenerateReport} />
-    </Router>
+      </Router>
     </div>
   );
 }
