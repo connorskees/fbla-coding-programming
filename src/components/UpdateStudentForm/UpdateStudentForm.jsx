@@ -8,8 +8,11 @@ class UpdateStudentForm extends Component {
     state = {};
 
     render() {
+        // assumes style is a valid "CSS in JS" style object
+        // studentUUID is primary key of student, to propagate data from db
+        const { style, studentUUID } = this.props;
         return (
-            <form className="update-student-form">
+            <form className="update-student-form" style={style}>
                 <div className="row row-1">
                     <label htmlFor="first">
                         First
