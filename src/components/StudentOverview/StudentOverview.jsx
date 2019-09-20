@@ -35,13 +35,19 @@ class StudentOverview extends Component {
                         </div>
                     </div>
                     <div className="bar-wrapper">
+                        {/*
+                            A separate div has to be used here as the bar because
+                            you cannot dynamically style pseudoelements using
+                            Javascript
+                        */}
                         <div className="bar" style={{ width: `${barWidth}%` }} />
                     </div>
                     <div className="icon-wrapper">
-                        <div className="edit-icon" onClick={ this.toggleIsEditing } />
+                        {/* TODO: enter when focused */}
+                        <div tabIndex={0} className="edit-icon" onClick={ this.toggleIsEditing } />
                     </div>
                     <div className="icon-wrapper">
-                        <div className="delete-icon" />
+                        <div tabIndex={0} className="delete-icon" />
                     </div>
                 </div>
                 <UpdateStudentForm style={{ marginTop: "20px", display: isEditing ? "block" : "none" }}/>
