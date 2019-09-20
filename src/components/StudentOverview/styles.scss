@@ -89,6 +89,8 @@
     .bar {
         background: $accent-color;
         height: 20px;
-        border: none;
+        // the scrollbar makes there be a small gap between
+        // the border and the bar (this fix was annoying to figure out) 
+        margin-left: -.001vw;
     }
 }
