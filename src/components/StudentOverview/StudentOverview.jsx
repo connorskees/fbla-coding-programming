@@ -16,16 +16,18 @@ class StudentOverview extends Component {
     render() {
         const { first, last, hours } = this.props;
         const { isEditing } = this.state;
+        // we add .1 here as the maximum value because the bar does not look completely filled at 100
+        const barWidth = Math.min(Math.ceil((hours / 200) * 100), 100) + .1;
         return (
             <div className="overview-wrapper">
                 <div className="overview-text-wrapper">
                     <div className="name-wrapper">
                         <span className="name">
-                            Alex Jones
+                            { first } { last }
                         </span>
                         <div>
                             <span className="hours">
-                                25
+                                { hours }
                             </span>
                             <span className="hours-label">
                                 hours
@@ -33,7 +35,7 @@ class StudentOverview extends Component {
                         </div>
                     </div>
                     <div className="bar-wrapper">
-                        <div className="bar" style={{ width: `${Math.min(Math.ceil((25 / 200) * 100), 100)}%` }} />
+                        <div className="bar" style={{ width: `${barWidth}%` }} />
                     </div>
                     <div className="icon-bar-wrapper">
                         <div className="edit-icon" onClick={ this.toggleIsEditing } />
