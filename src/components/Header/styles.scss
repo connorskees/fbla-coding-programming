@@ -7,6 +7,10 @@ nav.header {
     right: 0;
     margin: 0;
     padding: 0;
+    // White color is necessary so that it
+    // covers elements when scrolling over them
+    background: white;
+    height: 160px;
 
     display: flex;
     align-items: center;
@@ -16,8 +20,8 @@ nav.header {
     h1 {
         color: $accent-color;
         font-size: 113px;
-        margin-top: 3rem;
-        margin-bottom: 3rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
     
     .nav-item-wrapper {
