@@ -37,8 +37,10 @@ class StudentOverview extends Component {
                     <div className="bar-wrapper">
                         <div className="bar" style={{ width: `${barWidth}%` }} />
                     </div>
-                    <div className="icon-bar-wrapper">
+                    <div className="icon-wrapper">
                         <div className="edit-icon" onClick={ this.toggleIsEditing } />
+                    </div>
+                    <div className="icon-wrapper">
                         <div className="delete-icon" />
                     </div>
                 </div>
