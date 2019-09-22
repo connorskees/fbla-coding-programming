@@ -2,16 +2,14 @@ const fs = window.require('fs');
 const sqlite3 = window.require('sqlite3');
 const uuidv4 = require('uuid/v4');
 
-const db = new sqlite3.Database('db/students.db');
+const db = new sqlite3.Database('src/db/students.db');
 
 function queryAll() {
-    console.log(db);
     db.serialize(function () {
-        db.each("SELECT * FROM students", function (err, row) {
-            console.log(row);
+        db.all("SELECT * FROM students;", function (err, rows) {
+            return rows;
         });
     });
-    db.close()
 }
 
 function update(uuid, first, last, volunteer_hours, grade, student_id, community_service_award) {
@@ -26,7 +24,10 @@ function update(uuid, first, last, volunteer_hours, grade, student_id, community
             uuid
         ]);
     });
-    db.close()
+}
+
+function close() {
+    db.close();
 }
 
 /*
@@ -40,7 +41,7 @@ function update(uuid, first, last, volunteer_hours, grade, student_id, community
 */
 function insert(first, last, volunteer_hours, grade, student_id, community_service_award) {
     db.serialize(function () {
-        db.run("INSERT INTO students * VALUES (?, ?, ?, ?, ?, ?, ?)", [
+        db.run("INSERT INTO students VALUES (?, ?, ?, ?, ?, ?, ?)", [
             uuidv4(),
             first,
             last,
@@ -50,11 +51,11 @@ function insert(first, last, volunteer_hours, grade, student_id, community_servi
             community_service_award
         ]);
     });
-    db.close()
 }
 
 module.exports = {
   queryAll: queryAll,
   insert: (first, last, volunteer_hours, grade, student_id, community_service_award) => insert(first, last, volunteer_hours, grade, student_id, community_service_award),
-  update: (uuid, first, last, volunteer_hours, grade, student_id, community_service_award) => update(uuid, first, last, volunteer_hours, grade, student_id, community_service_award)
+  update: (uuid, first, last, volunteer_hours, grade, student_id, community_service_award) => update(uuid, first, last, volunteer_hours, grade, student_id, community_service_award),
+  close: close
 }
