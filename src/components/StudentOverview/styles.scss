@@ -81,17 +81,8 @@
     }
 }
 
-.bar-wrapper {
+.bar {
     width: 400px;
     height: 20px;
-    border: 1px solid $paragraph-color;
-    display: inline-block;
-    
-    .bar {
-        background: $accent-color;
-        height: 20px;
-        // the scrollbar makes there be a small gap between
-        // the border and the bar (this fix was annoying to figure out) 
-        margin-left: -.001vw;
-    }
+    border: 1px solid $paragraph-color;    
 }

@@ -16,8 +16,7 @@ class StudentOverview extends Component {
     render() {
         const { first, last, hours } = this.props;
         const { isEditing } = this.state;
-        // we add .1 here as the maximum value because the bar does not look completely filled at 100
-        const barWidth = Math.min(Math.ceil((hours / 200) * 100), 100) + .1;
+        const barWidth = Math.min(Math.ceil((hours / 200) * 100), 100);
         return (
             <div className="overview-wrapper">
                 <div className="overview-text-wrapper">
@@ -34,14 +33,17 @@ class StudentOverview extends Component {
                             </span>
                         </div>
                     </div>
-                    <div className="bar-wrapper">
-                        {/*
-                            A separate div has to be used here as the bar because
-                            you cannot dynamically style pseudoelements using
-                            Javascript
-                        */}
-                        <div className="bar" style={{ width: `${barWidth}%` }} />
-                    </div>
+                    {/* 
+                        We have to use a linear gradient to style the
+                        inner bar because the other two options, pseudoelements
+                        and a child element, wouldn't work. The former can't be
+                        styled by CSS in JS, and the latter is hard to make work
+                        at different screen sizes.
+                     */}
+                    <div
+                        className="bar"
+                        style={{ "background": `linear-gradient(to right, #1EB337 ${barWidth}%, #fff ${barWidth}%)` }}
+                    />
                     <div className="icon-wrapper">
                         {/* TODO: enter when focused */}
                         <div tabIndex={0} className="edit-icon" onClick={ this.toggleIsEditing } />
