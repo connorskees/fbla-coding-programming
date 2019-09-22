@@ -41,14 +41,15 @@ class StudentOverview extends Component {
                         at different screen sizes.
                      */}
                     <div
+                        title="Hours percentage bar"
                         className="bar"
                         style={{ "background": `linear-gradient(to right, #1EB337 ${barWidth}%, #fff ${barWidth}%)` }}
                     />
-                    <div className="icon-wrapper">
+                    <div title="More Info | Edit" className="icon-wrapper">
                         {/* TODO: enter when focused */}
                         <div tabIndex={0} className="edit-icon" onClick={ this.toggleIsEditing } />
                     </div>
-                    <div className="icon-wrapper">
+                    <div title="Delete" className="icon-wrapper">
                         <div tabIndex={0} className="delete-icon" />
                     </div>
                 </div>
