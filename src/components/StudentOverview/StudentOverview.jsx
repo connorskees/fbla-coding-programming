@@ -14,19 +14,19 @@ class StudentOverview extends Component {
     }
 
     render() {
-        const { first, last, hours } = this.props;
+        const { student } = this.props;
         const { isEditing } = this.state;
-        const barWidth = Math.min(Math.ceil((hours / 200) * 100), 100);
+        const barWidth = Math.min(Math.ceil((student.volunteer_hours / 200) * 100), 100);
         return (
             <div className="overview-wrapper">
                 <div className="overview-text-wrapper">
                     <div className="name-wrapper">
                         <span className="name">
-                            { first } { last }
+                            { student.first } { student.last }
                         </span>
                         <div>
                             <span className="hours">
-                                { hours }
+                                { student.volunteer_hours }
                             </span>
                             <span className="hours-label">
                                 hours
@@ -52,7 +52,7 @@ class StudentOverview extends Component {
                         <div tabIndex={0} className="delete-icon" />
                     </div>
                 </div>
-                <UpdateStudentForm style={{ marginTop: "20px", display: isEditing ? "block" : "none" }}/>
+                <UpdateStudentForm student={student} style={{ marginTop: "20px", display: isEditing ? "block" : "none" }}/>
             </div>
         );
     }
