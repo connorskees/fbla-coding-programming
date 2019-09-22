@@ -30,7 +30,9 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "sqlite3": "^4.0.4",
+    "uuid": "^3.3.3"
   },
   "homepage": "./",
   "main": "public/electron.js",
@@ -40,7 +42,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron-dev": "concurrently \"npm run start\" \"wait-on http://localhost:3000 && electron .\"",
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "install-app-deps",
     "preelectron-pack": "npm run build",
     "electron-pack": "electron-builder build -w"
   },
