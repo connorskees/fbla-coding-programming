@@ -30,7 +30,6 @@ class Header extends Component {
         return (
             <header>
                 <nav className="header">
-                    <h1>uda</h1>
                     <div className="nav-item-wrapper">
                         {navElements.map(el => {
                             let className = el.value === active ? "nav-item active" : "nav-item";

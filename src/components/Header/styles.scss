@@ -9,20 +9,13 @@ nav.header {
     padding: 0;
     // White color is necessary so that it
     // covers elements when scrolling over them
-    background: white;
-    height: 160px;
+    background: $lighter-accent-color;
+    height: 100px;
 
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-
-    h1 {
-        color: $accent-color;
-        font-size: 113px;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
     
     .nav-item-wrapper {
         display: flex;
@@ -35,19 +28,19 @@ nav.header {
             color: $paragraph-color;
             text-decoration: none;
             cursor: pointer;
+            font-weight: bold;
             
             &:not(:first-of-type) {
                 margin-left: 50px;
             }
 
             &.active {
-                font-weight: bold;
-                border-bottom: 4px solid $accent-color;
+                color: $accent-color;
             }
         }
     }
 }
 
 .spacer {
-    height: 250px;
+    height: 120px;
 }
