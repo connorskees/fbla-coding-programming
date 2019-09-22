@@ -32,6 +32,11 @@ app.on('window-all-closed', () => {
     }
 });
 
+app.on('quit', () => {
+  const db = require('../src/db');
+  db.close();
+})
+
 app.on('activate', () => {
     if (mainWindow === null) {
         createWindow();
