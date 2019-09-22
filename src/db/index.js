@@ -1,4 +1,3 @@
-const fs = window.require('fs');
 const sqlite3 = window.require('sqlite3');
 const uuidv4 = require('uuid/v4');
 
