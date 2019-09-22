@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import "./styles.scss";
 
-// using a list of maps with `value` and `path` keys lets us
+// using a list of objects with `value` and `path` keys lets us
 // very easily change the path without affecting any other logic
 // in the program
-const navElements = [
+const routes = [
     {
         value: "Home",
         path: "/"
@@ -31,7 +31,7 @@ class Header extends Component {
             <header>
                 <nav className="header">
                     <div className="nav-item-wrapper">
-                        {navElements.map(el => {
+                        {routes.map(el => {
                             let className = el.value === active ? "nav-item active" : "nav-item";
                             return (
                                 <Link to={el.path.toLowerCase()} key={el.value} className={className}>
