@@ -5,9 +5,22 @@ const uuidv4 = require('uuid/v4');
 const db = new sqlite3.Database('src/db/students.db');
 
 function queryAll() {
-    db.serialize(function () {
-        db.all("SELECT * FROM students;", function (err, rows) {
-            return rows;
+    return new Promise((resolve, reject) => {
+        let responseObj;
+        db.all("SELECT * FROM students", (err, rows) => {
+            if (err) {
+                console.log(err);
+                responseObj = {
+                    'error': err
+                };
+                reject(responseObj);
+            } else {
+                responseObj = {
+                    statement: this,
+                    rows: rows
+                };
+                resolve(responseObj);
+            }
         });
     });
 }
