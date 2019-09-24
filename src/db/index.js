@@ -25,17 +25,18 @@ function queryAll() {
 }
 
 function update(uuid, first, last, volunteer_hours, grade, student_id, community_service_award) {
-    db.serialize(function () {
-        db.run("UPDATE students SET first = ?, last = ?, volunteer_hours = ?, grade = ?, student_id = ?, community_service_award = ? WHERE uuid = ?;", [
-            first,
-            last,
-            volunteer_hours,
-            grade,
-            student_id,
-            community_service_award,
-            uuid
-        ]);
-    });
+    db.run(
+        `UPDATE students
+        SET
+        first = ?, last = ?, volunteer_hours = ?, grade = ?, student_id = ?, community_service_award = ?
+        WHERE uuid = ?`,
+        [ first, last, volunteer_hours, grade, student_id, community_service_award, uuid ],
+        function (err) {
+            if (err) {
+                console.error(err.message);
+            }
+        }
+    );
 }
 
 function close() {
