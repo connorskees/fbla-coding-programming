@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import UpdateStudentForm from 'components/UpdateStudentForm';
+import db from 'db';
 import "./styles.scss";
 
 class StudentOverview extends Component {
     state = {
         // whether or not to show edit info form
-        isEditing: false
+        isEditing: false,
+        student: this.props.student
     };
 
     toggleIsEditing = () => {
@@ -13,9 +15,18 @@ class StudentOverview extends Component {
         this.setState({ isEditing: !isEditing });
     }
 
+    update = (student) => {
+        this.setState({ student });
+        db.update(student.uuid, student.first, student.last, student.volunteer_hours, student.grade, student.student_id, student.community_service_award);
+        return false;
+    }
+
+    delete = () => {
+        db.deleteStudent(this.state.student.uuid);
+    }
+
     render() {
-        const { student } = this.props;
-        const { isEditing } = this.state;
+        const { isEditing, student } = this.state;
         const barWidth = Math.min(Math.ceil((student.volunteer_hours / 200) * 100), 100);
         return (
             <div className="overview-wrapper">
@@ -53,7 +64,7 @@ class StudentOverview extends Component {
                         <div tabIndex={0} className="delete-icon" />
                     </div>
                 </div>
-                <UpdateStudentForm student={student} style={{ marginTop: "20px", display: isEditing ? "block" : "none" }}/>
+                <UpdateStudentForm onSubmit={(x) => this.update(x)} student={student} style={{ marginTop: "20px", display: isEditing ? "block" : "none" }}/>
             </div>
         );
     }

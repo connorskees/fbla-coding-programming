@@ -48,13 +48,13 @@ class UpdateStudentForm extends Component {
                 onSubmit={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    this.props.onSave(this.state);
+                    this.props.onSubmit(this.state);
                 }}
                 onKeyDown={
                     (e) => {
                         if (e.key === 'Enter') {
                             e.preventDefault();
-                            this.props.onSave(this.state);
+                            this.props.onSubmit(this.state);
                         }
                     }
                 }
