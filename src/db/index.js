@@ -24,6 +24,10 @@ function queryAll() {
     });
 }
 
+function deleteStudent(uuid) {
+    db.run("DELETE FROM students WHERE uuid = ?", uuid)
+}
+
 function update(uuid, first, last, volunteer_hours, grade, student_id, community_service_award) {
     db.run(
         `UPDATE students
@@ -70,5 +74,6 @@ module.exports = {
   queryAll: queryAll,
   insert: (first, last, volunteer_hours, grade, student_id, community_service_award) => insert(first, last, volunteer_hours, grade, student_id, community_service_award),
   update: (uuid, first, last, volunteer_hours, grade, student_id, community_service_award) => update(uuid, first, last, volunteer_hours, grade, student_id, community_service_award),
-  close: close
+  close: close,
+  deleteStudent: deleteStudent
 }
