@@ -33,7 +33,7 @@ class UpdateStudentForm extends Component {
         this.setState({ community_service_award: event.target.value })
     }
 
-    save = () => {
+    onSubmit = () => {
 
     }
     
@@ -44,7 +44,21 @@ class UpdateStudentForm extends Component {
         const { style } = this.props;
         const { first, last, volunteer_hours, grade, student_id, community_service_award } = this.state;
         return (
-            <form className="update-student-form" style={style}>
+            <form className="update-student-form" style={style}
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.props.onSave(this.state);
+                }}
+                onKeyDown={
+                    (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            this.props.onSave(this.state);
+                        }
+                    }
+                }
+            >
                 <div className="row row-1">
                     <label htmlFor="first">
                         First
@@ -90,7 +104,7 @@ class UpdateStudentForm extends Component {
                     </label>
                 </div>
 
-                <button type="button" onClick={(x) => this.props.onSave(this.state)} className="update">Update</button>
+                <button type="submit" className="update">Update</button>
             </form>
         );
     }
