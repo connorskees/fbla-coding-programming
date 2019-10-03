@@ -14,6 +14,22 @@ I was not able to perform A/B testing like one would normally do for a productio
 
 `git` was used extensively throughout the development phase. As I was the only person working on the project, I did not make as heavy use of `git branch` and `git rebase` for different features as one normally would.
 
+### Security
+
+In Electron, one has to be much more cognizant of security. A regular XSS exploit has the potential to lead to RCE.
+
+### Tools Used
+
+* Visual Studio Code
+* Adobe XD
+
+### Major Dependencies
+
+* Reactjs
+* Electron
+* SQLite3
+* SASS
+
 ## Process
 
 When developing libraries, I like to design the API first. To this end, I started by opening Adobe XD and designing the frontend of the program. 
