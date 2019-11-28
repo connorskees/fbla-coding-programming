@@ -6,50 +6,24 @@ import db from '../../db';
 
 const fs = window.require("fs");
 
-const testData = [
-    {
-        "student_id": 13321,
-        "first": "Alex",
-        "last": "Jones",
-        "grade": 11,
-        "hours": 25
-    },
-    {
-        "student_id": 12121,
-        "first": "George",
-        "last": "Bush",
-        "grade": 9,
-        "hours": 125
-    },
-    {
-        "student_id": 38209,
-        "first": "Theodore",
-        "last": "Cruz",
-        "grade": 10,
-        "hours": 125
-    },
-    {
-        "student_id": 29048,
-        "first": "Rand",
-        "last": "Paul",
-        "grade": 12,
-        "hours": 125
-    },
-    {
-        "student_id": 23904,
-        "first": "Paul",
-        "last": "Ryan",
-        "grade": 9,
-        "hours": 125
-    },
-]
+// How many students (rows) to show in the preview
+// of the report
+const amtPreviewed = 5;
+
 const exportFormats = ["CSV", "TSV", "JSON", "YAML"];
 
 class GenerateReportForm extends Component {
     state = {
         // the currently selected export format
         exportFormat: "",
+        studentsPreview: []
     };
+
+    componentDidMount() {
+        db.queryLimitNOffsetM(amtPreviewed, 0).then((response) => {
+            this.setState({ studentsPreview: response.rows });
+        });
+    }
 
     updateExportFormat = (event) => {
         this.setState({ exportFormat: event.target.id });
@@ -143,7 +117,7 @@ class GenerateReportForm extends Component {
     }
 
     render() {
-        const { exportFormat } = this.state;
+        const { studentsPreview, exportFormat } = this.state;
         return (
             <form className="generate-report-container"
                 onSubmit={(e) => {
@@ -186,14 +160,19 @@ class GenerateReportForm extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {testData.map((el, count) => {
+                            {studentsPreview.map((el, idx) => {
                                 return (
-                                    <tr key={el.student_id}>
-                                        <td>{count+1}</td>
+                                    <tr key={el.uuid}>
+                                        {/*
+                                            We increment idx by 1 because `idx` is indexed
+                                            at 0, and we want the UI to be friendly to people
+                                            that don't have a programming background.
+                                        */}
+                                        <td>{idx+1}</td>
                                         <td>{el.student_id}</td>
                                         <td>{el.first} {el.last}</td>
                                         <td>{el.grade}</td>
-                                        <td>{el.hours}</td>
+                                        <td>{el.volunteer_hours}</td>
                                     </tr>
                                 )
                             })}
