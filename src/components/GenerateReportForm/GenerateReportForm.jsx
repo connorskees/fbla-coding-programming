@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import RadioChecked from 'assets/checked-radio.svg';
 import RadioUnchecked from 'assets/unchecked-radio.svg';
 import "./styles.scss";
+import db from '../../db';
 
-const exportFormats = ["CSV", "TSV", "JSON", "XML", "YAML"];
+const fs = window.require("fs");
 
 const testData = [
     {
@@ -42,21 +43,122 @@ const testData = [
         "hours": 125
     },
 ]
+const exportFormats = ["CSV", "TSV", "JSON", "YAML"];
 
 class GenerateReportForm extends Component {
     state = {
         // the currently selected export format
-        exportFormat: ""
+        exportFormat: "",
     };
 
     updateExportFormat = (event) => {
         this.setState({ exportFormat: event.target.id });
     }
 
+    // we leave pretty printing as an execise for the user
+    exportJSON = () => {
+        db.queryAll()
+        .then((response) => {
+            this.saveFile("students.json", JSON.stringify(this.state.students));
+        });
+    }
+
+    // rolling our own CSV serializer is flawed, but its much more lightweight
+    // than pulling in an entire parser.
+    //
+    // the reason we are able to get away with just string formatting is that
+    // we have checks elsewhere to ensure there are no quotes, commas, or null
+    // fields in the data.
+    exportCSV = () => {
+        db.queryAll()
+        .then((response) => {
+            const data = response.rows.map(x => 
+                `${x.uuid},${x.first},${x.last},${x.grade},${x.volunteer_hours},${x.student_id},${x.community_service_award}`
+            ).join("\r\n");
+            this.saveFile("students.csv", `uuid,first,last,grade,volunteer_hours,student_id,community_service_award\r\n${data}`);
+        });
+    }
+
+    // the reason we can get away with string replacing, as stated above, is
+    // that we can be *certain* there are no tabs within the data itself
+    exportTSV = () => {
+        db.queryAll()
+        .then((response) => {
+            const data = this.state.students.map(x =>
+                `${x.uuid}\t${x.grade}\t${x.first}\t${x.last}\t${x.volunteer_hours}\t${x.student_id}\t${x.community_service_award}`
+            ).join("\r\n");
+            this.saveFile("students.tsv", `uuid\tfirst\tlast\tgrade\tvolunteer_hours\tstudent_id\tcommunity_service_award\r\n${data}`);
+        });
+    }
+
+    exportYAML = () => {
+        db.queryAll()
+        .then((response) => {
+        // whitespace is significant in YAML
+        const students = this.state.students.map((x, idx) => {
+            return `
+    - student${idx}:
+        uuid: ${x.uuid}
+        grade: ${x.grade}
+        first: ${x.first}
+        last: ${x.last}
+        volunteer_hours: ${x.volunteer_hours}`;
+        });
+        const data = `students: ${students.join("")}`;
+        this.saveFile("students.yaml", data);
+        });
+    }
+
+    saveFile = (fileName, data_) => {
+        const data = new Uint8Array(Buffer.from(data_));
+        fs.writeFile(fileName, data, (err) => {
+            if (err) {
+                alert(err.message);
+                console.error(err);
+            };
+        });
+    }
+
+    onSubmit = () => {
+        switch (this.state.exportFormat) {
+            case "CSV":
+                this.exportCSV();
+                break;
+            case "TSV":
+                this.exportTSV();
+                break;
+            case "JSON":
+                this.exportJSON();
+                break;
+            case "YAML":
+                this.exportYAML();
+                break;
+            case "":
+                alert("No export format selected");
+                break;
+            default:
+                // this shouldn't happen
+                console.error(`unknown export format: ${this.state.exportFormat}`);
+        }
+    }
+
     render() {
         const { exportFormat } = this.state;
         return (
-            <form className="generate-report-container">
+            <form className="generate-report-container"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.onSubmit();
+                }}
+                onKeyDown={
+                    (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            this.onSubmit();
+                        }
+                    }
+                }>
                 <div className="export-select-container">
                     <h3>Export As</h3>
                     {exportFormats.map(format => {
