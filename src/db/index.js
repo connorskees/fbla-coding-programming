@@ -24,6 +24,30 @@ function queryAll() {
     });
 }
 
+// This helper function exists to allow
+// pagination such that we don't pull
+// the entire table into memory at once
+function queryLimitNOffsetM(n, m) {
+    return new Promise((resolve, reject) => {
+        let responseObj;
+        db.all("SELECT * FROM students LIMIT ? OFFSET ?", [n, m], (err, rows) => {
+            if (err) {
+                console.log(err);
+                responseObj = {
+                    'error': err
+                };
+                reject(responseObj);
+            } else {
+                responseObj = {
+                    statement: this,
+                    rows: rows
+                };
+                resolve(responseObj);
+            }
+        });
+    });
+}
+
 function deleteStudent(uuid) {
     db.run("DELETE FROM students WHERE uuid = ?", uuid)
 }
@@ -72,6 +96,7 @@ function insert(first, last, volunteer_hours, grade, student_id, community_servi
 
 module.exports = {
   queryAll: queryAll,
+  queryLimitNOffsetM: (n, m) => queryLimitNOffsetM(n, m),
   insert: (first, last, volunteer_hours, grade, student_id, community_service_award) => insert(first, last, volunteer_hours, grade, student_id, community_service_award),
   update: (uuid, first, last, volunteer_hours, grade, student_id, community_service_award) => update(uuid, first, last, volunteer_hours, grade, student_id, community_service_award),
   close: close,
