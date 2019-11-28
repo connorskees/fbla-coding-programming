@@ -12,9 +12,14 @@ class Students extends Component {
 
     componentDidMount() {
         db.queryAll()
-            .then((response) => {
+            .then(response => {
                 this.setState({ students: response.rows });
             });
+    }
+
+    deleteStudent = uuid => {
+        let { students } = this.state;
+        this.setState({ students: students.filter(x => x.uuid !== uuid) })
     }
 
     render() {
@@ -23,7 +28,7 @@ class Students extends Component {
                 <Header active="Students" />
                 {
                     this.state.students.map(
-                        el => <StudentOverview key={el.uuid} student={el}/>
+                        el => <StudentOverview onDeleteStudent={this.deleteStudent} key={el.uuid} student={el}/>
                     )
                 }
             </React.Fragment>

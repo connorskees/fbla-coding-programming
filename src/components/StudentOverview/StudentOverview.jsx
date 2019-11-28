@@ -22,7 +22,11 @@ class StudentOverview extends Component {
     }
 
     delete = () => {
-        db.deleteStudent(this.state.student.uuid);
+        const { uuid, first, last } = this.state.student;
+        if (window.confirm(`Are you sure you'd like to remove ${first} ${last}. You cannot undo this.`)) {
+            db.deleteStudent(uuid);
+            this.props.onDeleteStudent(uuid);
+        }
     }
 
     render() {
@@ -60,7 +64,7 @@ class StudentOverview extends Component {
                         {/* TODO: enter when focused */}
                         <div tabIndex={0} className="edit-icon" onClick={ this.toggleIsEditing } />
                     </div>
-                    <div title="Delete" className="icon-wrapper">
+                    <div title="Delete" className="icon-wrapper" onClick={ this.delete }>
                         <div tabIndex={0} className="delete-icon" />
                     </div>
                 </div>

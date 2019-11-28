@@ -31,12 +31,7 @@ class UpdateStudentForm extends Component {
 
     updateCommunityServiceAward = (event) => {
         this.setState({ community_service_award: event.target.value })
-    }
-
-    onSubmit = () => {
-
-    }
-    
+    }    
 
     render() {
         // assumes style is a valid "CSS in JS" style object
