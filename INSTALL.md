@@ -4,6 +4,12 @@ Prebuilt binaries have been provided for Windows 7, 8, and 10 as well as Linux. 
 
 When building from source, this tutorial expects an intermediate level of knowledge.
 
+- [Installation](#installation)
+  - [Windows](#windows)
+    - [Windows 10 with WSL](#windows-10-with-wsl)
+    - [Windows 7, 8 and 10 (without WSL)](#windows-7-8-and-10-without-wsl)
+  - [Linux or Mac](#linux-or-mac)
+
 ## Windows
 
 ### Windows 10 with WSL
@@ -16,7 +22,7 @@ When building from source, this tutorial expects an intermediate level of knowle
     nvm use node
     ```
 
-    Note: you may have to restart your terminal after curling to have changes take effect.
+    *Note: you may have to restart your terminal after curling to have changes take effect.*
 
 2. Untar source
 
@@ -42,7 +48,7 @@ When building from source, this tutorial expects an intermediate level of knowle
     npm run electron-pack
     ```
 
-    At this point you may choose to switch to your usual Windows shell. The next 2 instructions are shell agnostic (though you will have to remove the `./` in step 7 before running if you are on Windows).
+    At this point you may choose to switch to your usual Windows shell by typing `exit`. The next 2 instructions are shell agnostic (though you will have to remove the `./` in step 7 before running if you are on Windows).
 
 6. `cd` into dist
 
@@ -62,7 +68,7 @@ When building from source, this tutorial expects an intermediate level of knowle
 
 2. Unzip the archive downloaded from the FBLA dropbox
 
-3. Open the command line and `cd` into the unzipped folder (you will know you are in the correct directory if you are able to see a directory called `src` after running `dir`).
+3. Open the command line and `cd` into the unzipped folder (you will know you are in the correct directory if you are able to see a directory called `src` after running `dir`). This will probably be in `%USERPROFILE%/Downloads/source-windows-1.0.0`
 
 4. Install npm dependencies through the command line (this may take some time) by typing
 
