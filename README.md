@@ -25,10 +25,10 @@ In Electron, one has to be much more cognizant of security. A regular XSS exploi
 
 ### Major Dependencies
 
-* Reactjs
-* Electron
-* SQLite3
-* SASS
+* [Reactjs](https://reactjs.org/)
+* [Electron](https://electronjs.org/)
+* [SQLite3](https://www.sqlite.org/index.html)
+* [Sass / SCSS](https://sass-lang.com/)
 
 ## Process
 
