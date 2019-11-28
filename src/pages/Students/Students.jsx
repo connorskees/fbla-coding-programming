@@ -13,14 +13,9 @@ class Students extends Component {
     componentDidMount() {
         db.queryAll()
             .then((response) => {
-                let students = [];
-                for (let item in response.rows) {
-                    students.push(response.rows[item]);
-                }
-                this.setState({ students });
+                this.setState({ students: response.rows });
             });
     }
-
 
     render() {
         return (

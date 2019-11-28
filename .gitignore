@@ -21,5 +21,10 @@ package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# serialization
 *.db
 *.sqlite
+students.[ct]sv
+students.yaml
+students.json
