@@ -1,1 +1,32 @@
 @import "../variables";
+@import "../mixins";
+
+.page-nav {
+    position: fixed;
+    right: 10%;
+    background-color: white;
+    outline: none;
+
+    & .arrow {
+        pointer-events: none;
+        user-select: none;
+    }
+
+    & .arrow-container {
+        @include transition(.28s);
+        width: 24px;
+        height: 24px;
+        position: relative;
+        color: $accent-color;
+        border-radius: 50%;
+        cursor: pointer;
+        display: inline-block;
+        user-select: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        outline: none;
+
+        &:hover {
+            background: #eee;
+        }
+    }
+}
