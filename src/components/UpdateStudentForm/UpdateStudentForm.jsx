@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import "./styles.scss";
 
-// Characters that can lead to XSS or SQLi
-const illegalCharacters = "[^<>(){}'\"]+"
+// Characters that can lead to XSS or SQLi or interfere with our
+// serialization. This should be read as a regex
+const illegalCharacters = "[^<>(){}'\",\t\n\r]+"
 
 class UpdateStudentForm extends Component {
     state = {
