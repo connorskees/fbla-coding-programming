@@ -47,9 +47,9 @@ class GenerateReportForm extends Component {
         db.queryAll()
         .then((response) => {
             const data = response.rows.map(x => 
-                `${x.uuid},${x.first},${x.last},${x.grade},${x.volunteer_hours},${x.student_id},${x.community_service_award}`
+                `${x.first},${x.last},${x.grade},${x.volunteer_hours},${x.student_id},${x.community_service_award}`
             ).join("\r\n");
-            this.saveFile("students.csv", `uuid,first,last,grade,volunteer_hours,student_id,community_service_award\r\n${data}`);
+            this.saveFile("students.csv", `first,last,grade,volunteer_hours,student_id,community_service_award\r\n${data}`);
         });
     }
 
@@ -58,10 +58,13 @@ class GenerateReportForm extends Component {
     exportTSV = () => {
         db.queryAll()
         .then((response) => {
-            const data = this.state.students.map(x =>
-                `${x.uuid}\t${x.grade}\t${x.first}\t${x.last}\t${x.volunteer_hours}\t${x.student_id}\t${x.community_service_award}`
-            ).join("\r\n");
-            this.saveFile("students.tsv", `uuid\tfirst\tlast\tgrade\tvolunteer_hours\tstudent_id\tcommunity_service_award\r\n${data}`);
+            const data = this.state.students
+              .map(
+                x =>
+                  `${x.first}\t${x.last}\t${x.grade}\t${x.volunteer_hours}\t${x.student_id}\t${x.community_service_award}`
+              )
+              .join("\r\n");
+            this.saveFile("students.tsv", `first\tlast\tgrade\tvolunteer_hours\tstudent_id\tcommunity_service_award\r\n${data}`);
         });
     }
 
@@ -72,10 +75,9 @@ class GenerateReportForm extends Component {
         const students = this.state.students.map((x, idx) => {
             return `
     - student${idx}:
-        uuid: ${x.uuid}
-        grade: ${x.grade}
         first: ${x.first}
         last: ${x.last}
+        grade: ${x.grade}
         volunteer_hours: ${x.volunteer_hours}`;
         });
         const data = `students: ${students.join("")}`;
@@ -162,7 +164,7 @@ class GenerateReportForm extends Component {
                         <tbody>
                             {studentsPreview.map((el, idx) => {
                                 return (
-                                    <tr key={el.uuid}>
+                                    <tr key={el.student_id}>
                                         {/*
                                             We increment idx by 1 because `idx` is indexed
                                             at 0, and we want the UI to be friendly to people
