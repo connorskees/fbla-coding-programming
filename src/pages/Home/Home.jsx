@@ -38,7 +38,8 @@ class Home extends Component {
 
               <p>
                   You can page through the students by hitting the arrows in the bottom right.
-                  Students are shown 5 at a time to reduce memory usage.
+                  Students are shown 5 at a time to reduce memory usage. You can add students
+                  by clicking the <code>+</code> between the arrows.
               </p>
               <h2 id="generate-report">Generate Report</h2>
               <p>

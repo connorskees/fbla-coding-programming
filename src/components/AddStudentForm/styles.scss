@@ -1,0 +1,92 @@
+@import "../variables";
+
+.background {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+}
+
+form.add-student-form {
+    width: 25rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    z-index: 99;
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1.5rem;
+    }
+
+    #student-id {
+        width: 5rem;
+    }
+
+    #award {
+        width: 18.75rem;
+    }
+
+    input {
+        width: 10rem;
+    }
+
+    input, select {
+        border: 1px solid $accent-color;
+        background: $lighter-accent-color;
+        border-radius: 8px;
+        padding: 5px;
+        font-size: 1rem;
+        font-family: inherit;
+        color: inherit;
+        outline: none;
+        margin-top: 3px;
+    }
+
+    label {
+        display: flex;
+        flex-direction: column;
+        font-size: 1rem;
+    }
+
+    .update {
+        font-size: 1rem;
+        font-family: inherit;
+        color: inherit;
+        outline: none;
+        float: right;
+        background: #fff;
+        border: 1px solid $paragraph-color;
+        padding: 5px 10px 5px 10px;
+        cursor: pointer;
+        color: $paragraph-color;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    .close {
+        width: 24px;
+        height: 24px;
+        position: relative;
+        color: $accent-color;
+        border-radius: 50%;
+        cursor: pointer;
+        display: inline-block;
+        user-select: none;
+        color: red;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        outline: none;
+
+        &:hover {
+            background: #eee;
+        }
+    }
+}

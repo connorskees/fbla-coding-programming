@@ -18,7 +18,6 @@ class StudentOverview extends Component {
     update = (student) => {
         this.setState({ student });
         db.update(student.uuid, student.first, student.last, student.volunteer_hours, student.grade, student.student_id, student.community_service_award);
-        return false;
     }
 
     delete = () => {
