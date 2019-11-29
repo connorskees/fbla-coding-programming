@@ -23,7 +23,7 @@ class StudentOverview extends Component {
 
     delete = () => {
         const { uuid, first, last } = this.state.student;
-        if (window.confirm(`Are you sure you'd like to remove ${first} ${last}. You cannot undo this.`)) {
+        if (window.confirm(`Are you sure you'd like to remove ${first} ${last}? You cannot undo this.`)) {
             db.deleteStudent(uuid);
             this.props.onDeleteStudent(uuid);
         }

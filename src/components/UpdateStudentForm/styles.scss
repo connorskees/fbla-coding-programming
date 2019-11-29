@@ -49,5 +49,10 @@ form.update-student-form {
         border: 1px solid $paragraph-color;
         padding: 5px 10px 5px 10px;
         cursor: pointer;
+        color: $paragraph-color;
+
+        &:hover {
+            color: white;
+        }
     }
 }

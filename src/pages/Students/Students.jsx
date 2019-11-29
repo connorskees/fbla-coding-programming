@@ -19,15 +19,15 @@ class Students extends Component {
         this.updateStudents();
     }
 
-    updateStudents() {
-        db.queryLimitNOffsetM(studentsPerPage, 0)
+    updateStudents = () => {
+        db.queryLimitNOffsetM(studentsPerPage, this.state.page*5)
             .then(response => {
                 this.setState({ students: response.rows });
             });
     }
 
     deleteStudent = uuid => {
-        let { students } = this.state;
+        const { students } = this.state;
         this.setState({ students: students.filter(x => x.uuid !== uuid) })
         this.updateStudents();
     }
