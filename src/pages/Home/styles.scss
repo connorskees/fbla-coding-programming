@@ -1,1 +1,11 @@
 @import "../variables";
+
+.text {
+    max-width: 70%;
+    left: 10%;
+    position: fixed;
+
+    & p {
+        line-height: 1.5rem;
+    }
+}
