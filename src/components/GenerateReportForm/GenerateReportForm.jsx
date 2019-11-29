@@ -31,11 +31,14 @@ class GenerateReportForm extends Component {
         this.setState({ exportFormat: event.target.id });
     }
 
-    // we leave pretty printing as an execise for the user
+    // we pretty print by default
     exportJSON = () => {
         db.queryAll()
         .then((response) => {
-            this.saveFile("students.json", JSON.stringify(response.rows));
+            this.saveFile(
+              "students.json",
+              JSON.stringify(response.rows, null, 2)
+            );
         });
     }
 

@@ -47,7 +47,7 @@ class Home extends Component {
                 be printed or handled by external programs. It supports the
                 following formats: <code>JSON</code>, <code>CSV</code>,{" "}
                 <code>TSV</code>, and <code>YAML</code>. It is important to note
-                that the <code>JSON</code> is in minified form.
+                that the <code>JSON</code> is not minified by default.
               </p>
             </section>
           </React.Fragment>
