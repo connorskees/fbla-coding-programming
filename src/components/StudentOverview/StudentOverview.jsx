@@ -31,7 +31,7 @@ class StudentOverview extends Component {
 
     render() {
         const { isEditing, student } = this.state;
-        const barWidth = Math.min(Math.ceil((student.volunteer_hours / 200) * 100), 100);
+        const barWidth = Math.min(Math.floor((student.volunteer_hours / 200) * 100), 100);
         return (
             <div className="overview-wrapper">
                 <div className="overview-text-wrapper">
