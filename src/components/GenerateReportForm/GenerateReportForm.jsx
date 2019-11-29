@@ -4,7 +4,9 @@ import RadioUnchecked from 'assets/unchecked-radio.svg';
 import "./styles.scss";
 import db from '../../db';
 
+const { dialog } = window.require("electron").remote;
 const fs = window.require("fs");
+const path = window.require("path");
 
 // How many students (rows) to show in the preview
 // of the report
@@ -33,7 +35,7 @@ class GenerateReportForm extends Component {
     exportJSON = () => {
         db.queryAll()
         .then((response) => {
-            this.saveFile("students.json", JSON.stringify(this.state.students));
+            this.saveFile("students.json", JSON.stringify(response.rows));
         });
     }
 
@@ -58,7 +60,7 @@ class GenerateReportForm extends Component {
     exportTSV = () => {
         db.queryAll()
         .then((response) => {
-            const data = this.state.students
+            const data = response.rows
               .map(
                 x =>
                   `${x.first}\t${x.last}\t${x.grade}\t${x.volunteer_hours}\t${x.student_id}\t${x.community_service_award}`
@@ -72,7 +74,7 @@ class GenerateReportForm extends Component {
         db.queryAll()
         .then((response) => {
         // whitespace is significant in YAML
-        const students = this.state.students.map((x, idx) => {
+        const students = response.rows.map((x, idx) => {
             return `
     - student${idx}:
         first: ${x.first}
@@ -87,12 +89,22 @@ class GenerateReportForm extends Component {
 
     saveFile = (fileName, data_) => {
         const data = new Uint8Array(Buffer.from(data_));
-        fs.writeFile(fileName, data, (err) => {
-            if (err) {
-                alert(err.message);
-                console.error(err);
-            };
+
+        dialog.showOpenDialog({
+            properties: ["openDirectory", "multiSelections"]
+        }).then(res => {
+            const dir = res.filePaths[0];
+    
+            if (dir !== undefined) {
+              fs.writeFile(path.join(dir, fileName), data, err => {
+                if (err) {
+                  alert(err.message);
+                  console.error(err);
+                }
+              });
+            }
         });
+
     }
 
     onSubmit = () => {
