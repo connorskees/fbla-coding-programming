@@ -61,7 +61,13 @@ function update(uuid, first, last, volunteer_hours, grade, student_id, community
         [ first, last, volunteer_hours, grade, student_id, community_service_award, uuid ],
         function (err) {
             if (err) {
-                console.error(err.message);
+                if (err.message.startsWith("SQLITE_CONSTRAINT: UNIQUE constraint failed: students.student_id")) {
+                    alert(`Error: student id ${student_id} already exists (student ids must be unique)`);
+                } else {
+                    alert(err);
+                }
+                console.error(err);
+                return err;
             }
         }
     );
