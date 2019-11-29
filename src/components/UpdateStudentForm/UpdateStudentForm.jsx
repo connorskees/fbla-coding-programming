@@ -19,7 +19,9 @@ class UpdateStudentForm extends Component {
     }
 
     updateHours = (event) => {
-        this.setState({ volunteer_hours: event.target.value })
+        const { value } = event.target;
+        if (value < 0) return;
+        this.setState({ volunteer_hours: value })
     }
 
     updateGrade = (event) => {
@@ -70,7 +72,7 @@ class UpdateStudentForm extends Component {
                 <div className="row row-2">
                     <label htmlFor="hours">
                         Volunteer Hours
-                        <input required onChange={this.updateHours} value={volunteer_hours} pattern={ illegalCharacters } type="number" id="hours" />
+                        <input required min={0} max={365*24} onChange={this.updateHours} value={volunteer_hours} pattern={ illegalCharacters } type="number" id="hours" />
                     </label>
 
                     <label htmlFor="grade">
