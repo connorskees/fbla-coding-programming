@@ -1,9 +1,12 @@
-const electron = require('electron');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const {
+  app,
+  Menu,
+  BrowserWindow,
+  protocol
+} = require('electron');
 
 const path = require('path');
-const isDev = require('electron-is-dev');
+const url = require('url');
 
 let mainWindow;
 
@@ -15,27 +18,41 @@ function createWindow() {
       nodeIntegration: true
     }
   });
-  mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
-  if (isDev) {
-    // Open the DevTools.
-    //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
-    mainWindow.webContents.openDevTools();
-  }
+  mainWindow.loadURL(
+    url.format({
+      pathname:
+        "index.html",
+      protocol: "file",
+      slashes: true
+    })
+  );
+
+  mainWindow.webContents.openDevTools();
+
+  Menu.setApplicationMenu(null);
+
   mainWindow.on('closed', () => mainWindow = null);
 }
 
-app.on('ready', createWindow);
+app.on("ready", () => {
+  protocol.interceptFileProtocol(
+    "file",
+    (request, callback) => {
+      const url = request.url.substr(7); /* all urls start with 'file://' */
+      callback({ path: path.normalize(`${__dirname}/${url}`) });
+    },
+    err => {
+      if (err) console.error("Failed to register protocol");
+    }
+  );
+  createWindow();
+});
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
 });
-
-app.on('quit', () => {
-  const db = require('../src/db');
-  db.close();
-})
 
 app.on('activate', () => {
     if (mainWindow === null) {

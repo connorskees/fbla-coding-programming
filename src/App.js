@@ -9,6 +9,10 @@ import {
 import './App.css';
 
 class App extends Component {
+  componentWillUnmount() {
+    db.close();
+  }
+
   render() {
     return (
       <div className="App">
