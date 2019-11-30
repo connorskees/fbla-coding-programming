@@ -1,6 +1,6 @@
 {
   "name": "fbla-coding-programming",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": {
     "name": "Connor Skees",
     "email": "connor1skees@gmail.com",
@@ -44,7 +44,7 @@
     "electron-dev": "concurrently \"npm run start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "install-app-deps",
     "preelectron-pack": "npm run build",
-    "electron-pack": "electron-builder build -w"
+    "electron-pack": "electron-builder build"
   },
   "eslintConfig": {
     "extends": "react-app"
