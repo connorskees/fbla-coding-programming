@@ -1,5 +1,6 @@
 const sqlite3 = window.require("sqlite3").verbose();
 const uuidv4 = require("uuid/v4");
+const { dialog } = window.require("electron").remote;
 
 const db = new sqlite3.Database(`students.db`);
 
@@ -142,9 +143,9 @@ function update(uuid, first, last, volunteer_hours, grade, student_id, community
         function (err) {
             if (err) {
                 if (err.message.startsWith("SQLITE_CONSTRAINT: UNIQUE constraint failed: students.student_id")) {
-                    alert(`Error: student id ${student_id} already exists (student ids must be unique)`);
+                    dialog.showErrorBox("Non-unique student id", `Error: student id ${student_id} already exists (student ids must be unique)`);
                 } else {
-                    alert(err);
+                    dialog.showErrorBox("Encountered unexpected error: ", err);
                 }
                 console.error(err);
                 return err;

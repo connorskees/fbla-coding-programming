@@ -101,7 +101,7 @@ class GenerateReportForm extends Component {
             if (dir !== undefined) {
               fs.writeFile(path.join(dir, fileName), data, err => {
                 if (err) {
-                  alert(err.message);
+                  dialog.showErrorBox("Error encountered when writitng", err.message);
                   console.error(err);
                 }
               });
@@ -125,7 +125,7 @@ class GenerateReportForm extends Component {
                 this.exportYAML();
                 break;
             case "":
-                alert("No export format selected");
+                dialog.showErrorBox("No export format selected");
                 break;
             default:
                 // this shouldn't happen

@@ -3,6 +3,8 @@ import UpdateStudentForm from 'components/UpdateStudentForm';
 import db from 'db';
 import "./styles.scss";
 
+const { dialog } = window.require("electron").remote;
+
 class StudentOverview extends Component {
     state = {
         // whether or not to show edit info form
@@ -22,10 +24,18 @@ class StudentOverview extends Component {
 
     delete = () => {
         const { uuid, first, last } = this.state.student;
-        if (window.confirm(`Are you sure you'd like to remove ${first} ${last}? You cannot undo this.`)) {
-            db.deleteStudent(uuid);
-            this.props.onDeleteStudent(uuid);
-        }
+        dialog.showMessageBox(null, {
+            type: "question",
+            message: `Are you sure you'd like to remove ${first} ${last}?`,
+            detail: "This action cannot be undone",
+            buttons: ["Yes", "Cancel"],
+            defaultId: 0
+        }).then((res) => {
+            if (res.response === 0) {
+                db.deleteStudent(uuid);
+                this.props.onDeleteStudent(uuid);
+            }
+        });
     }
 
     render() {

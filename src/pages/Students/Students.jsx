@@ -33,7 +33,6 @@ class Students extends Component {
         const { students } = this.state;
         this.setState({ students: students.filter(x => x.uuid !== uuid) })
         this.updateStudents();
-        window.location.reload();
     }
 
     incrementPage = () => {
