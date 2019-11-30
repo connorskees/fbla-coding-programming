@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Community Service Awards Hour Tracker",
+  "name": "Connor Skees -- FBLA Coding and Programming Submission -- 2019",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#1EB337",
   "background_color": "#ffffff"
 }
