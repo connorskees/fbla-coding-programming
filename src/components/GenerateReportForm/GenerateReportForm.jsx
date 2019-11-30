@@ -125,7 +125,7 @@ class GenerateReportForm extends Component {
                 this.exportYAML();
                 break;
             case "":
-                dialog.showErrorBox("No export format selected");
+                dialog.showErrorBox("No export format selected", "");
                 break;
             default:
                 // this shouldn't happen
