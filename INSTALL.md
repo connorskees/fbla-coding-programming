@@ -1,6 +1,6 @@
 # Installation
 
-Prebuilt binaries have been provided for Windows 7, 8, and 10 as well as Linux. Due to issues with cross compilation from Windows to Mac (specifically how code signing is handled), Mac users will have to [build from source](#linux-or-mac).
+Prebuilt binaries have been provided for Windows. Due to issues with cross compilation from Windows to Mac (specifically how code signing is handled), Mac users will have to [build from source](#linux-or-mac).
 
 When building from source, this tutorial expects an intermediate level of knowledge.
 
@@ -48,18 +48,18 @@ When building from source, this tutorial expects an intermediate level of knowle
     npm run electron-pack
     ```
 
-    At this point you may choose to switch to your usual Windows shell by typing `exit`. The next 2 instructions are shell agnostic (though you will have to remove the `./` in step 7 before running if you are on Windows).
+    At this point you may choose to switch to your usual Windows shell by typing `exit`. The next 2 instructions are not shell agnostic (though you will have to remove the `./` in step 7 before running if you are on Windows).
 
 6. `cd` into dist
 
     ```bash
-    cd dist/*-unpacked
+    cd dist
     ```
 
 7. Run
 
     ```bash
-    ./fbla-coding-programming
+    ./fbla-coding-programming Setup 1.0.0.exe
     ```
 
 ### Windows 7, 8 and 10 (without WSL)
@@ -68,7 +68,7 @@ When building from source, this tutorial expects an intermediate level of knowle
 
 2. Unzip the archive downloaded from the FBLA dropbox
 
-3. Open the command line and `cd` into the unzipped folder (you will know you are in the correct directory if you are able to see a directory called `src` after running `dir`). This will probably be in `%USERPROFILE%/Downloads/source-windows-1.0.0`
+3. Open the command line and `cd` into the unzipped folder (you will know you are in the correct directory if you are able to see a directory called `src` after running `dir`). This will probably be in `%USERPROFILE%/Downloads/win-*` (the `*` is a glob and will automatically be expanded by your shell).
 
 4. Install npm dependencies through the command line (this may take some time) by typing
 
@@ -85,7 +85,7 @@ When building from source, this tutorial expects an intermediate level of knowle
 6. Move into the `dist` directory by typing
 
     ```bash
-    cd dist/*-unpacked
+    cd dist
     ```
 
 7. Run
@@ -133,11 +133,11 @@ When building from source, this tutorial expects an intermediate level of knowle
 6. `cd` into dist
 
     ```bash
-    cd dist/*-unpacked
+    cd dist
     ```
 
-7. Run
+7. Run through either the command line or by typing (the glob may not be able to find the correct file)
 
     ```bash
-    ./fbla-coding-programming
+    ./fbla-coding-programming*
     ```
