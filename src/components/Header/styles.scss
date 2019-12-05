@@ -11,6 +11,7 @@ nav.header {
     // covers elements when scrolling over them
     background: $lighter-accent-color;
     height: 100px;
+    z-index: 1;
 
     display: flex;
     align-items: center;
