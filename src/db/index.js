@@ -1,8 +1,6 @@
-const sqlite3 = window.require("sqlite3").verbose();
-const uuidv4 = require("uuid/v4");
 const { dialog } = window.require("electron").remote;
-
-const db = new sqlite3.Database(`students.db`);
+const db = window.require("electron").remote.getGlobal("sharedObject").db;
+const uuidv4 = require("uuid/v4");
 
 // This block is a work around for the way that including a database works.
 // It is not possible to easily include a database with prefilled
@@ -91,7 +89,7 @@ function queryAll() {
             if (err) {
                 console.log(err);
                 responseObj = {
-                    'error': err
+                    "error": err
                 };
                 reject(responseObj);
             } else {
@@ -115,7 +113,7 @@ function queryLimitNOffsetM(n, m) {
             if (err) {
                 console.log(err);
                 responseObj = {
-                    'error': err
+                    "error": err
                 };
                 reject(responseObj);
             } else {

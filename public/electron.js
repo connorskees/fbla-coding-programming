@@ -3,10 +3,11 @@ const {
   Menu,
   BrowserWindow,
   protocol
-} = require('electron');
+} = require("electron");
 
-const path = require('path');
-const url = require('url');
+const path = require("path");
+const url = require("url");
+const sqlite3 = require("sqlite3");
 
 let mainWindow;
 
@@ -18,6 +19,13 @@ function createWindow() {
       nodeIntegration: true
     }
   });
+
+  const db = new sqlite3.Database("students.db");
+
+  global.sharedObject = {
+    db
+  };
+
   mainWindow.loadURL(
     url.format({
       pathname:
@@ -27,18 +35,19 @@ function createWindow() {
     })
   );
 
-  mainWindow.webContents.openDevTools();
+  // open dev tools for debugging
+  // mainWindow.webContents.openDevTools();
 
   Menu.setApplicationMenu(null);
 
-  mainWindow.on('closed', () => mainWindow = null);
+  mainWindow.on("closed", () => mainWindow = null);
 }
 
 app.on("ready", () => {
   protocol.interceptFileProtocol(
     "file",
     (request, callback) => {
-      const url = request.url.substr(7); /* all urls start with 'file://' */
+      const url = request.url.substr(7); /* all urls start with "file://" */
       callback({ path: path.normalize(`${__dirname}/${url}`) });
     },
     err => {
@@ -48,13 +57,13 @@ app.on("ready", () => {
   createWindow();
 });
 
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
+app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
         app.quit();
     }
 });
 
-app.on('activate', () => {
+app.on("activate", () => {
     if (mainWindow === null) {
         createWindow();
     }
