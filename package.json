@@ -16,10 +16,11 @@
     },
     "files": [
       "build/**/*",
-      "node_modules/**/*"
+      "node_modules/**/*",
+      "package.json"
     ],
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "node_modules"
     }
   },
   "license": "MIT",
@@ -31,7 +32,7 @@
     "react-ink": "^6.4.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.1",
-    "sqlite3": "^4.0.4",
+    "sqlite3": "^4.1.1",
     "uuid": "^3.3.3"
   },
   "homepage": "./",
